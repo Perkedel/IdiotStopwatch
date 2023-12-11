@@ -1,0 +1,10 @@
+AudioStreamPlayer
+Control
+HBoxContainer
+Label
+Window
+Button
+RichTextLabel
+VBoxContainer
+Node2D
+Node

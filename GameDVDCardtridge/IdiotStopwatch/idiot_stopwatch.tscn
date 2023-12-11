@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgms72uy3ucqq"]
+
+[ext_resource type="Script" path="res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd" id="1_4xx3o"]
+[ext_resource type="AudioStream" uid="uid://xub4ogsfofhq" path="res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg" id="2_7m24n"]
+
+[node name="IdiotStopwatch" type="Node"]
+script = ExtResource("1_4xx3o")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timering" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="TimerDisplaySec" type="Label" parent="Control/VBoxContainer/Timering"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "1234890"
+
+[node name="TimerDisplayFormat" type="Label" parent="Control/VBoxContainer/Timering"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "00:00:00"
+
+[node name="Logs" type="RichTextLabel" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+theme_override_font_sizes/italics_font_size = 48
+theme_override_font_sizes/bold_italics_font_size = 48
+theme_override_font_sizes/mono_font_size = 48
+text = "1234
+1232
+123
+12312
+
+"
+
+[node name="Counter" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "9999999999999999999"
+horizontal_alignment = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Reseter" type="Button" parent="Control/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "RESET"
+
+[node name="Lapper" type="Button" parent="Control/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "LAP"
+
+[node name="StartStop" type="Button" parent="Control/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "START/STOP"
+
+[node name="Spacing" type="Control" parent="Control/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Settinger" type="Button" parent="Control/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "SETTING"
+
+[node name="Beeper" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7m24n")
+
+[connection signal="pressed" from="Control/VBoxContainer/Buttons/Reseter" to="." method="_on_reseter_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Buttons/Lapper" to="." method="_on_lapper_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Buttons/StartStop" to="." method="_on_start_stop_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Buttons/Settinger" to="." method="_on_start_stop_pressed"]

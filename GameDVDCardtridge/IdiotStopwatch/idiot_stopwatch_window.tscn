@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://csqlgy536wjom"]
+
+[ext_resource type="PackedScene" uid="uid://dgms72uy3ucqq" path="res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.tscn" id="1_1uk1e"]
+
+[node name="IdiotStopwatchWindow" type="Window"]
+size = Vector2i(1280, 720)
+
+[node name="IdiotStopwatch" parent="." instance=ExtResource("1_1uk1e")]
