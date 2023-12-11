@@ -8,6 +8,7 @@ var _bufferCounter:int = 0
 @onready var counterSpin:SpinBox = $VBoxContainer/SetBar/CounterSpinBox
 
 signal changeCounter(to)
+signal offerReset(the)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,4 +36,14 @@ func _on_spin_box_value_changed(value):
 	if activo:
 		emit_signal("changeCounter",value)
 		pass
+	pass # Replace with function body.
+
+
+func _on_clear_counter_pressed():
+	emit_signal("offerReset",'counter')
+	pass # Replace with function body.
+
+
+func _on_clear_log_pressed():
+	emit_signal('offerReset','logs')
 	pass # Replace with function body.

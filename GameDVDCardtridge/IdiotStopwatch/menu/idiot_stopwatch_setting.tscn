@@ -47,8 +47,15 @@ text = "Sets"
 layout_mode = 2
 alignment = 1
 
+[node name="LabelCounterSpinBox" type="Label" parent="VBoxContainer/SetBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Set Counter Number:"
+
 [node name="CounterSpinBox" type="SpinBox" parent="VBoxContainer/SetBar"]
 layout_mode = 2
 alignment = 2
 
+[connection signal="pressed" from="VBoxContainer/ResetBar/ClearCounter" to="." method="_on_clear_counter_pressed"]
+[connection signal="pressed" from="VBoxContainer/ResetBar/ClearLog" to="." method="_on_clear_log_pressed"]
 [connection signal="value_changed" from="VBoxContainer/SetBar/CounterSpinBox" to="." method="_on_spin_box_value_changed"]

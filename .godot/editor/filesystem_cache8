@@ -1,13 +1,14 @@
-ea4bc82a6ad023ab7ee23ee620429895
-::res://::1702282525
+fc8a56933c4b1c8d796fdb8f7a9f9475
+::res://::1702300318
+export_presets.cfg::TextFile::-1::1702300239::0::1::::<><>::
 icon.svg::CompressedTexture2D::5348882073330670111::1702269265::1702269277::1::::<><>::
 README.md::TextFile::-1::1702276296::0::1::::<><>::
 ::res://GameDVDCardtridge/::1702269337
-::res://GameDVDCardtridge/IdiotStopwatch/::1702282525
+::res://GameDVDCardtridge/IdiotStopwatch/::1702300244
 do-amarac.ogg::AudioStreamOggVorbis::1655744209192752914::1702275728::1702275728::1::::<><>::
-idiot_stopwatch.gd::GDScript::-1::1702281804::0::1::::<>Node<>::
-idiot_stopwatch.tscn::PackedScene::7606319147386166552::1702282476::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd<>uid://xub4ogsfofhq::::res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg<>uid://qpb82r0y1a0m::::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.tscn
-idiot_stopwatch_window.tscn::PackedScene::6069950506838631724::1702281804::0::1::::<><>::uid://dgms72uy3ucqq::::res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.tscn
+idiot_stopwatch.gd::GDScript::-1::1702299971::0::1::::<>Node<>::
+idiot_stopwatch.tscn::PackedScene::7606319147386166552::1702300244::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd<>uid://xub4ogsfofhq::::res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg<>uid://qpb82r0y1a0m::::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.tscn<>uid://cofdy74g54vss::::res://GameDVDCardtridge/IdiotStopwatch/sprites/Perkedel Short Typeborder.png
+idiot_stopwatch_window.tscn::PackedScene::6069950506838631724::1702281804::0::1::::<><>::uid://dgms72uy3ucqq
 ::res://GameDVDCardtridge/IdiotStopwatch/audio/::1702275723
 ::res://GameDVDCardtridge/IdiotStopwatch/LedColor/::1702276071
 ButtonStyleboxLEDBlue.tres::StyleBoxFlat::476182697867884267::1702271336::0::1::::<><>::
@@ -19,8 +20,9 @@ ButtonStyleboxLEDPinkDark.tres::StyleBoxFlat::569749045628069516::1702276043::0:
 ButtonStyleboxLEDRed.tres::StyleBoxFlat::3793114453810503135::1702271311::0::1::::<><>::
 ButtonStyleboxLEDWhite.tres::StyleBoxFlat::5189398690934301410::1702271311::0::1::::<><>::
 ButtonStyleboxLEDYellow.tres::StyleBoxFlat::36319852380438542::1702271123::0::1::::<><>::
-::res://GameDVDCardtridge/IdiotStopwatch/menu/::1702281804
-idiot_stopwatch_setting.gd::GDScript::-1::1702281572::0::1::::IdiotStopWatchSetting<>Control<>::
-idiot_stopwatch_setting.tscn::PackedScene::1154108258272152206::1702281804::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd
-::res://GameDVDCardtridge/IdiotStopwatch/sprites/::1702282525
+::res://GameDVDCardtridge/IdiotStopwatch/menu/::1702300244
+idiot_stopwatch_setting.gd::GDScript::-1::1702296722::0::1::::IdiotStopWatchSetting<>Control<>::
+idiot_stopwatch_setting.tscn::PackedScene::1154108258272152206::1702300244::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd
+::res://GameDVDCardtridge/IdiotStopwatch/sprites/::1702299946
+HexagonEngineBootSplash-PoliticalManeuver.png::CompressedTexture2D::7732279092766965673::1702299946::1702299946::1::::<><>::
 Perkedel Short Typeborder.png::CompressedTexture2D::5766033802981371282::1702282522::1702282526::1::::<><>::

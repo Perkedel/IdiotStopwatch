@@ -1,5 +1,7 @@
 extends Node
 
+const version:String = '2024.01'
+
 @onready var timerDisplaySec:Label = $Control/VBoxContainer/Timering/TimerDisplaySec
 @onready var timerDisplayFormat:Label = $Control/VBoxContainer/Timering/TimerDisplayFormat
 @onready var logDisplay:RichTextLabel = $Control/VBoxContainer/Logs
@@ -10,6 +12,7 @@ extends Node
 @onready var beepSpeaker:AudioStreamPlayer = $Beeper
 @onready var backPanel:Panel = $Control/Bgron
 @onready var settingWindow:Window = $Control/SettingWindow
+@onready var confirmWindow:ConfirmationDialog = $Control/AreYouSure
 @onready var settingContent:IdiotStopWatchSetting = $Control/SettingWindow/IdiotStopwatchSetting
 @onready var beepSound:AudioStream = preload("res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg")
 
@@ -26,6 +29,7 @@ var saveData:Dictionary = {
 	logs = [0,0,0],
 	counter = 0,
 }
+var dialogDoThe:String = ''
 
 var timerLogs:PackedFloat64Array = [0,0,0]
 
@@ -142,6 +146,26 @@ func _process(delta):
 		pass
 	pass
 
+func getDocument()->String:
+	var toBeCopied:String = ''
+	toBeCopied += '# Idiot Stopwatch v'+version+"\n\n"
+	toBeCopied += 'Counter = **'+String.num_int64(countingNumber)+"** \n"
+	toBeCopied += 'Last Timer = '+String.num(timering)+' ('+toTimeFormat(timering)+')\n\n'
+	toBeCopied += '(c) Perkedel Technologies  \nhttps://github.com/Perkedel/IdiotStopwatch\n\n'
+	toBeCopied += '## Logs\n\n'
+	toBeCopied += '| Seconds | HH:MM::SS.MMM |\n'
+	toBeCopied += '| --- | --- |\n'
+	var logsing:String = ''
+	for i in range(0,timerLogs.size()):
+		logsing += '| '+String.num(timerLogs[i])+' | '+toTimeFormat(timerLogs[i])+' |\n'
+		pass
+	toBeCopied += logsing
+	return toBeCopied
+
+func copyEverything():
+	DisplayServer.clipboard_set(getDocument())
+	pass
+
 func refreshLogDisplay():
 	"""
 	https://docs.godotengine.org/en/4.1/tutorials/ui/bbcode_in_richtextlabel.html
@@ -154,6 +178,41 @@ func refreshLogDisplay():
 #		logDisplay.append_text('%d[right]%s[/right]\n' % [timerLogs[i], toTimeFormat(timerLogs[i])])
 		logDisplay.append_text('{timeSec}\t\t\t\t\t\t{timeFormat}\n'.format({"timeSec":timerLogs[i],"timeFormat":toTimeFormat(timerLogs[i])}))
 		pass
+	pass
+
+func confirmReset(the:String):
+	setTimer(false)
+	dialogDoThe = the
+	closeSettingWindow()
+	confirmWindow.dialog_text = 'Are you sure to reset ' + the + '?'
+	confirmWindow.popup_centered()
+	pass
+
+func respondReset(whichIs:StringName):
+	setTimer(false)
+	match(whichIs):
+		'cancel':
+			pass
+		'yes':
+			resetDo(dialogDoThe)
+			pass
+		_:
+			pass
+	dialogDoThe = ''
+	confirmWindow.hide()
+
+func resetDo(the:String):
+	match(the):
+		'counter':
+			countingNumber = 0
+			pass
+		'logs':
+			timerLogs = [0,0,0]
+			refreshLogDisplay()
+			pass
+		_:
+			pass
+	save()
 	pass
 
 func logTimer():
@@ -171,17 +230,18 @@ func resetTimer():
 	pass
 
 func openSettingWindow():
-	print('windowwwww')
+	print('Setting')
+	setTimer(false)
 	settingContent.setBufferCounter(countingNumber)
 	settingWindow.popup_centered()
 	pass
 
 func closeSettingWindow():
 	settingWindow.hide()
+	setTimer(false)
 	pass
 
-func toggleTimer():
-	started = not started
+func _timerCondition():
 	if started:
 		startButton.add_theme_stylebox_override("normal",startedButtonStyle)
 		startButton.add_theme_stylebox_override("hover",startedButtonStyleHover)
@@ -193,12 +253,23 @@ func toggleTimer():
 	save()
 	pass
 
+func setTimer(to:bool):
+	started = to
+	_timerCondition()
+
+func toggleTimer():
+	started = not started
+	_timerCondition()
+	pass
+
 func addCounter():
 	countingNumber+=1
+	save()
 	pass
 
 func decreaseCounter():
 	countingNumber-=1
+	save()
 	pass
 
 func setCounter(to:int):
@@ -243,4 +314,29 @@ func _on_idiot_stopwatch_setting_change_counter(to):
 
 func _on_setting_window_close_requested():
 	closeSettingWindow()
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_offer_reset(the):
+	confirmReset(the)
+	pass # Replace with function body.
+
+
+func _on_are_you_sure_canceled():
+	respondReset('cancel')
+	pass # Replace with function body.
+
+
+func _on_are_you_sure_confirmed():
+	respondReset('yes')
+	pass # Replace with function body.
+
+
+func _on_are_you_sure_custom_action(action):
+	respondReset(action)
+	pass # Replace with function body.
+
+
+func _on_copy_now_pressed():
+	copyEverything()
 	pass # Replace with function body.

@@ -1,9 +1,9 @@
+Button
+Label
 TextureRect
 ConfirmationDialog
 SpinBox
 HBoxContainer
-Button
-Label
 VBoxContainer
 Window
 Panel

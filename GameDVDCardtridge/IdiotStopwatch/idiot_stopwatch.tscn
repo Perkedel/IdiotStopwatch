@@ -111,6 +111,11 @@ text = "00:00:00
 layout_mode = 2
 alignment = 2
 
+[node name="CopyNow" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "COPY"
+
 [node name="Counter" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -185,7 +190,6 @@ size = Vector2i(1000, 500)
 visible = false
 transient = true
 exclusive = true
-popup_window = true
 
 [node name="IdiotStopwatchSetting" parent="Control/SettingWindow" instance=ExtResource("2_47uch")]
 
@@ -198,6 +202,7 @@ dialog_text = "Are you sure to..."
 [node name="Beeper" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7m24n")
 
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/CopyNow" to="." method="_on_copy_now_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Adjust/Add" to="." method="_on_add_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Adjust/Decrease" to="." method="_on_decrease_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Buttons/Reseter" to="." method="_on_reseter_pressed"]
@@ -206,3 +211,7 @@ stream = ExtResource("2_7m24n")
 [connection signal="pressed" from="Control/VBoxContainer/Buttons/Settinger" to="." method="_on_settinger_pressed"]
 [connection signal="close_requested" from="Control/SettingWindow" to="." method="_on_setting_window_close_requested"]
 [connection signal="changeCounter" from="Control/SettingWindow/IdiotStopwatchSetting" to="." method="_on_idiot_stopwatch_setting_change_counter"]
+[connection signal="offerReset" from="Control/SettingWindow/IdiotStopwatchSetting" to="." method="_on_idiot_stopwatch_setting_offer_reset"]
+[connection signal="canceled" from="Control/AreYouSure" to="." method="_on_are_you_sure_canceled"]
+[connection signal="confirmed" from="Control/AreYouSure" to="." method="_on_are_you_sure_confirmed"]
+[connection signal="custom_action" from="Control/AreYouSure" to="." method="_on_are_you_sure_custom_action"]
