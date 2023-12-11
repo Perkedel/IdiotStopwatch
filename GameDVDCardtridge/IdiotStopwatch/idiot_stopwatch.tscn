@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgms72uy3ucqq"]
+[gd_scene load_steps=5 format=3 uid="uid://dgms72uy3ucqq"]
 
 [ext_resource type="Script" path="res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd" id="1_4xx3o"]
 [ext_resource type="AudioStream" uid="uid://xub4ogsfofhq" path="res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg" id="2_7m24n"]
+[ext_resource type="PackedScene" uid="uid://qpb82r0y1a0m" path="res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.tscn" id="2_47uch"]
+[ext_resource type="Texture2D" uid="uid://cofdy74g54vss" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/Perkedel Short Typeborder.png" id="2_wc6te"]
 
 [node name="IdiotStopwatch" type="Node"]
 script = ExtResource("1_4xx3o")
@@ -18,6 +20,14 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Bgron" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
@@ -33,6 +43,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 1, 1, 1)
 theme_override_font_sizes/font_size = 72
 text = "1234890"
 
@@ -44,12 +56,14 @@ text = "00:00:00"
 
 [node name="Logs" type="RichTextLabel" parent="Control/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/bold_font_size = 48
 theme_override_font_sizes/italics_font_size = 48
 theme_override_font_sizes/bold_italics_font_size = 48
 theme_override_font_sizes/mono_font_size = 48
+bbcode_enabled = true
 text = "1234
 1232
 123
@@ -57,12 +71,71 @@ text = "1234
 
 "
 
-[node name="Counter" type="Label" parent="Control/VBoxContainer"]
+[node name="Loggings" type="HBoxContainer" parent="Control/VBoxContainer"]
+visible = false
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LogsSec" type="RichTextLabel" parent="Control/VBoxContainer/Loggings"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+theme_override_font_sizes/italics_font_size = 48
+theme_override_font_sizes/bold_italics_font_size = 48
+theme_override_font_sizes/mono_font_size = 48
+bbcode_enabled = true
+text = "1234
+1232
+123
+12312
+
+"
+
+[node name="LogsFormat" type="RichTextLabel" parent="Control/VBoxContainer/Loggings"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+theme_override_font_sizes/italics_font_size = 48
+theme_override_font_sizes/bold_italics_font_size = 48
+theme_override_font_sizes/mono_font_size = 48
+bbcode_enabled = true
+text = "00:00:00
+
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Counter" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 72
 text = "9999999999999999999"
 horizontal_alignment = 2
+
+[node name="Adjust" type="VBoxContainer" parent="Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="Add" type="Button" parent="Control/VBoxContainer/HBoxContainer/Adjust"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "^"
+
+[node name="Decrease" type="Button" parent="Control/VBoxContainer/HBoxContainer/Adjust"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "V"
+
+[node name="SpinBox" type="SpinBox" parent="Control/VBoxContainer"]
+visible = false
+layout_mode = 2
 
 [node name="Buttons" type="HBoxContainer" parent="Control/VBoxContainer"]
 custom_minimum_size = Vector2(0, 200)
@@ -87,7 +160,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "START/STOP"
 
+[node name="PerkedelLogo" type="TextureRect" parent="Control/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_wc6te")
+expand_mode = 2
+stretch_mode = 5
+
 [node name="Spacing" type="Control" parent="Control/VBoxContainer/Buttons"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -97,10 +178,31 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "SETTING"
 
+[node name="SettingWindow" type="Window" parent="Control"]
+title = "Settings"
+initial_position = 1
+size = Vector2i(1000, 500)
+visible = false
+transient = true
+exclusive = true
+popup_window = true
+
+[node name="IdiotStopwatchSetting" parent="Control/SettingWindow" instance=ExtResource("2_47uch")]
+
+[node name="AreYouSure" type="ConfirmationDialog" parent="Control"]
+title = "Warning"
+initial_position = 1
+size = Vector2i(1000, 200)
+dialog_text = "Are you sure to..."
+
 [node name="Beeper" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7m24n")
 
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Adjust/Add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Adjust/Decrease" to="." method="_on_decrease_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Buttons/Reseter" to="." method="_on_reseter_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Buttons/Lapper" to="." method="_on_lapper_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/Buttons/StartStop" to="." method="_on_start_stop_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/Buttons/Settinger" to="." method="_on_start_stop_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Buttons/Settinger" to="." method="_on_settinger_pressed"]
+[connection signal="close_requested" from="Control/SettingWindow" to="." method="_on_setting_window_close_requested"]
+[connection signal="changeCounter" from="Control/SettingWindow/IdiotStopwatchSetting" to="." method="_on_idiot_stopwatch_setting_change_counter"]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://qpb82r0y1a0m"]
+
+[ext_resource type="Script" path="res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd" id="1_qgsuf"]
+
+[node name="IdiotStopwatchSetting" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qgsuf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelClears" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "Deletes"
+
+[node name="ResetBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ClearCounter" type="Button" parent="VBoxContainer/ResetBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Clear Counter"
+
+[node name="ClearLog" type="Button" parent="VBoxContainer/ResetBar"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Clear Logs"
+
+[node name="LabelSets" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "Sets"
+
+[node name="SetBar" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CounterSpinBox" type="SpinBox" parent="VBoxContainer/SetBar"]
+layout_mode = 2
+alignment = 2
+
+[connection signal="value_changed" from="VBoxContainer/SetBar/CounterSpinBox" to="." method="_on_spin_box_value_changed"]

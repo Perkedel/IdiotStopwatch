@@ -9,3 +9,5 @@ res://GameDVDCardtridge/IdiotStopwatch/LedColor/ButtonStyleboxLEDGray.tres
 res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch_window.tscn
 res://GameDVDCardtridge/IdiotStopwatch/LedColor/ButtonStyleboxLEDPinkDark.tres
 res://GameDVDCardtridge/IdiotStopwatch/LedColor/ButtonStyleboxLEDGreenDark.tres
+res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.tscn
+res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd
