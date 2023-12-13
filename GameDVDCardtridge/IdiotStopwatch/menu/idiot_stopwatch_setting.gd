@@ -52,6 +52,7 @@ func refreshAbout():
 	content += '[img=100]res://GameDVDCardtridge/IdiotStopwatch/sprites/IdiotStopwatch.png[/img] Idiot Stopwatch [b]v'+_bufferVersion+'[/b]\n\n'
 	content += 'by JOELwindows7\nPerkedel Technologies\nCodes = GNU GPL v3\nAssets = CC4.0-BY-SA\n\n'
 	content += '[url]https://github.com/Perkedel/IdiotStopwatch[/url]\n'
+	content += 'Made with [img=20]res://icon.svg[/img] Godot Engine [url=https://godotengine.org/license](MIT License)[/url].'
 	aboutText.text = content
 	pass
 

@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dgms72uy3ucqq"]
+[gd_scene load_steps=14 format=3 uid="uid://dgms72uy3ucqq"]
 
 [ext_resource type="Script" path="res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd" id="1_4xx3o"]
 [ext_resource type="AudioStream" uid="uid://xub4ogsfofhq" path="res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg" id="2_7m24n"]
 [ext_resource type="PackedScene" uid="uid://qpb82r0y1a0m" path="res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.tscn" id="2_47uch"]
+[ext_resource type="Texture2D" uid="uid://bc43hssfq6iq3" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/AlwaysOnTop.png" id="2_a1wsd"]
 [ext_resource type="Texture2D" uid="uid://bhj234xeuyxlk" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/CopyButton.png" id="2_fn2ce"]
+[ext_resource type="Texture2D" uid="uid://lvrl1aj655bd" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/soundSpeakerMuteIcon.png" id="2_k4rbg"]
 [ext_resource type="Texture2D" uid="uid://cqqaht45i282" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/ResetRefresh.png" id="2_mmocp"]
 [ext_resource type="Texture2D" uid="uid://cofdy74g54vss" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/Perkedel Short Typeborder.png" id="2_wc6te"]
 [ext_resource type="Texture2D" uid="uid://cb3bg86m4pr6l" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/ActionButton.png" id="3_rt1as"]
@@ -54,6 +56,21 @@ theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 1, 1, 1)
 theme_override_font_sizes/font_size = 72
 text = "1234890"
+
+[node name="IsOnTopIcon" type="TextureRect" parent="Control/VBoxContainer/Timering"]
+layout_mode = 2
+tooltip_text = "Always on Top enabled"
+texture = ExtResource("2_a1wsd")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="MuteIcon" type="TextureRect" parent="Control/VBoxContainer/Timering"]
+visible = false
+layout_mode = 2
+tooltip_text = "Audio Muted"
+texture = ExtResource("2_k4rbg")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="AppIcon" type="TextureRect" parent="Control/VBoxContainer/Timering"]
 layout_mode = 2

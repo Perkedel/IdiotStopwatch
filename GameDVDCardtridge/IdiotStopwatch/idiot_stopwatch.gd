@@ -14,6 +14,9 @@ const version:String = '2024.01'
 @onready var settingWindow:Window = $Control/SettingWindow
 @onready var confirmWindow:ConfirmationDialog = $Control/AreYouSure
 @onready var settingContent:IdiotStopWatchSetting = $Control/SettingWindow/IdiotStopwatchSetting
+@onready var appIcon:TextureRect = $Control/VBoxContainer/Timering/AppIcon
+@onready var muteIcon:TextureRect = $Control/VBoxContainer/Timering/MuteIcon
+@onready var isOnTopIcon:TextureRect = $Control/VBoxContainer/Timering/IsOnTopIcon
 @onready var beepSound:AudioStream = preload("res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg")
 
 @export var timerBeepsAtSecond:float = 9.0
@@ -52,6 +55,7 @@ var resetReadyButtonStyleHover:StyleBox = preload("res://GameDVDCardtridge/Idiot
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	resetButton.add_theme_stylebox_override("normal",defaultButtonStyle)
+	appIcon.tooltip_text = "Idiot Stopwatch v"+version
 	loaden()
 	resetButton.grab_focus()
 	pass # Replace with function body.
@@ -98,6 +102,7 @@ func checkDir():
 	pass
 
 func save():
+	refreshStatusDisplay()
 	checkDir()
 	
 	var parent = get_parent()
@@ -143,11 +148,13 @@ func loaden():
 			var parent = get_parent()
 			if parent is Window:
 				parent.always_on_top = saveData['alwaysOnTop']
+				isOnTopIcon.visible = parent.always_on_top
 			#setOnTop(saveData['alwaysOnTop'])
 			pass
 		if saveData.has('mute'):
 			muteSound = saveData['mute']
-		refreshLogDisplay()
+	refreshLogDisplay()
+	refreshStatusDisplay()
 		
 	pass
 
@@ -225,6 +232,10 @@ func refreshLogDisplay():
 		pass
 	pass
 
+func refreshStatusDisplay():
+	muteIcon.visible = muteSound
+	pass
+
 func confirmReset(the:String):
 	setTimer(false)
 	dialogDoThe = the
@@ -287,6 +298,7 @@ func openSettingWindow():
 
 func closeSettingWindow():
 	settingWindow.hide()
+	setOnTop(getIsOnTop())
 	setTimer(false)
 	pass
 
@@ -336,6 +348,7 @@ func setOnTop(to:bool):
 	var parent = get_parent()
 	if parent is Window:
 		parent.always_on_top = to
+		isOnTopIcon.visible = parent.always_on_top
 		pass
 	else:
 		pass
