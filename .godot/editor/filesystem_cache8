@@ -1,14 +1,14 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1702300318
+::res://::1702445384
 export_presets.cfg::TextFile::-1::1702300239::0::1::::<><>::
 icon.svg::CompressedTexture2D::5348882073330670111::1702269265::1702269277::1::::<><>::
 README.md::TextFile::-1::1702276296::0::1::::<><>::
 ::res://GameDVDCardtridge/::1702269337
-::res://GameDVDCardtridge/IdiotStopwatch/::1702300244
+::res://GameDVDCardtridge/IdiotStopwatch/::1702447133
 do-amarac.ogg::AudioStreamOggVorbis::1655744209192752914::1702275728::1702275728::1::::<><>::
-idiot_stopwatch.gd::GDScript::-1::1702299971::0::1::::<>Node<>::
-idiot_stopwatch.tscn::PackedScene::7606319147386166552::1702300244::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd<>uid://xub4ogsfofhq::::res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg<>uid://qpb82r0y1a0m::::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.tscn<>uid://cofdy74g54vss::::res://GameDVDCardtridge/IdiotStopwatch/sprites/Perkedel Short Typeborder.png
-idiot_stopwatch_window.tscn::PackedScene::6069950506838631724::1702281804::0::1::::<><>::uid://dgms72uy3ucqq
+idiot_stopwatch.gd::GDScript::-1::1702447133::0::1::::<>Node<>::
+idiot_stopwatch.tscn::PackedScene::7606319147386166552::1702447133::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd<>uid://xub4ogsfofhq::::res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg<>uid://qpb82r0y1a0m::::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.tscn<>uid://bhj234xeuyxlk::::res://GameDVDCardtridge/IdiotStopwatch/sprites/CopyButton.png<>uid://cqqaht45i282::::res://GameDVDCardtridge/IdiotStopwatch/sprites/ResetRefresh.png<>uid://cofdy74g54vss::::res://GameDVDCardtridge/IdiotStopwatch/sprites/Perkedel Short Typeborder.png<>uid://cb3bg86m4pr6l::::res://GameDVDCardtridge/IdiotStopwatch/sprites/ActionButton.png<>uid://37amh6gnarj6::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png<>uid://c86hl56b0e76v::::res://GameDVDCardtridge/IdiotStopwatch/sprites/LapButton.png<>uid://bj3sfab2qy6y5::::res://GameDVDCardtridge/IdiotStopwatch/sprites/settingButton.png<>uid://dho2c5fb680r2::::res://GameDVDCardtridge/IdiotStopwatch/sprites/IdiotStopwatch.png
+idiot_stopwatch_window.tscn::PackedScene::6069950506838631724::1702432646::0::1::::<><>::uid://dgms72uy3ucqq::::res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.tscn
 ::res://GameDVDCardtridge/IdiotStopwatch/audio/::1702275723
 ::res://GameDVDCardtridge/IdiotStopwatch/LedColor/::1702276071
 ButtonStyleboxLEDBlue.tres::StyleBoxFlat::476182697867884267::1702271336::0::1::::<><>::
@@ -20,9 +20,30 @@ ButtonStyleboxLEDPinkDark.tres::StyleBoxFlat::569749045628069516::1702276043::0:
 ButtonStyleboxLEDRed.tres::StyleBoxFlat::3793114453810503135::1702271311::0::1::::<><>::
 ButtonStyleboxLEDWhite.tres::StyleBoxFlat::5189398690934301410::1702271311::0::1::::<><>::
 ButtonStyleboxLEDYellow.tres::StyleBoxFlat::36319852380438542::1702271123::0::1::::<><>::
-::res://GameDVDCardtridge/IdiotStopwatch/menu/::1702300244
-idiot_stopwatch_setting.gd::GDScript::-1::1702296722::0::1::::IdiotStopWatchSetting<>Control<>::
-idiot_stopwatch_setting.tscn::PackedScene::1154108258272152206::1702300244::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd
-::res://GameDVDCardtridge/IdiotStopwatch/sprites/::1702299946
+::res://GameDVDCardtridge/IdiotStopwatch/menu/::1702446521
+idiot_stopwatch_setting.gd::GDScript::-1::1702445648::0::1::::IdiotStopWatchSetting<>Control<>::
+idiot_stopwatch_setting.tscn::PackedScene::1154108258272152206::1702446521::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd<>uid://dtiik82sm6t3e::::res://GameDVDCardtridge/IdiotStopwatch/sprites/nvmButtonLeft.png<>uid://c3ab67kf7ffw4::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyReset.png<>uid://bf2rbir5e2y38::::res://GameDVDCardtridge/IdiotStopwatch/sprites/Shred.png<>uid://37amh6gnarj6::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png<>uid://b0g6rvk00rxow::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TimerKitchen.png<>uid://bc43hssfq6iq3::::res://GameDVDCardtridge/IdiotStopwatch/sprites/AlwaysOnTop.png
+::res://GameDVDCardtridge/IdiotStopwatch/sprites/::1702447408
+ActionButton.png::CompressedTexture2D::4900906001638184821::1702441106::1702441107::1::::<><>::
+ActionButtonGray.png::CompressedTexture2D::2797884762212879689::1702441106::1702441107::1::::<><>::
+AlwaysOnTop.png::CompressedTexture2D::2588378875668263412::1702444150::1702444150::1::::<><>::
+CopyButton.png::CompressedTexture2D::2898012908896991772::1702444879::1702444880::1::::<><>::
+CutButton.png::CompressedTexture2D::8783576785469447573::1702446250::1702446250::1::::<><>::
 HexagonEngineBootSplash-PoliticalManeuver.png::CompressedTexture2D::7732279092766965673::1702299946::1702299946::1::::<><>::
+IdiotStopwatch.png::CompressedTexture2D::7681129759007585817::1702445337::1702445338::1::::<><>::
+LapButton.png::CompressedTexture2D::7153515204167923267::1702444993::1702444993::1::::<><>::
+nvmButton.png::CompressedTexture2D::4096616795955389184::1702441106::1702440959::1::::<><>::
+nvmButtonFlip.png::CompressedTexture2D::4715588765633650283::1702440952::1702440959::1::::<><>::
+nvmButtonLeft.png::CompressedTexture2D::8509870471930966336::1702441106::1702441107::1::::<><>::
+nvmButtonRight.png::CompressedTexture2D::4498666281455875522::1702441106::1702441107::1::::<><>::
+PasteButton.png::CompressedTexture2D::6367900325409310189::1702446250::1702446250::1::::<><>::
 Perkedel Short Typeborder.png::CompressedTexture2D::5766033802981371282::1702282522::1702282526::1::::<><>::
+ResetRefresh.png::CompressedTexture2D::174379601598083689::1702444394::1702444394::1::::<><>::
+settingButton.png::CompressedTexture2D::3077024691182309290::1702444597::1702444598::1::::<><>::
+Shred.png::CompressedTexture2D::2794137523731785937::1702443425::1702443425::1::::<><>::
+soundSpeakerIcon.png::CompressedTexture2D::3754243751285843759::1702447408::1702447408::1::::<><>::
+soundSpeakerMuteIcon.png::CompressedTexture2D::816482411522258077::1702447408::1702447408::1::::<><>::
+TallyCounter.png::CompressedTexture2D::2031369555364071141::1702443625::1702443625::1::::<><>::
+TallyReset.png::CompressedTexture2D::6738246762320318821::1702443425::1702443425::1::::<><>::
+TimerKitchen.png::CompressedTexture2D::4155441746048799366::1702443934::1702443934::1::::<><>::
+TrashDelete.png::CompressedTexture2D::4193955270022743498::1702442612::1702442612::1::::<><>::

@@ -17,6 +17,7 @@ const version:String = '2024.01'
 @onready var beepSound:AudioStream = preload("res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg")
 
 @export var timerBeepsAtSecond:float = 9.0
+@export var muteSound:bool = false
 @export var savePath:String = "user://Simpan/IdiotStopwatch/IdiotStopwatch.json"
 @export var saveDir:String = "user://Simpan/IdiotStopwatch/"
 
@@ -28,6 +29,9 @@ var saveData:Dictionary = {
 	currentTimer = 0,
 	logs = [0,0,0],
 	counter = 0,
+	beepInSec = 9.0,
+	alwaysOnTop = true,
+	mute= false,
 }
 var dialogDoThe:String = ''
 
@@ -49,6 +53,7 @@ var resetReadyButtonStyleHover:StyleBox = preload("res://GameDVDCardtridge/Idiot
 func _ready():
 #	resetButton.add_theme_stylebox_override("normal",defaultButtonStyle)
 	loaden()
+	resetButton.grab_focus()
 	pass # Replace with function body.
 
 func toTimeFormat(numbering:float)->String:
@@ -70,16 +75,42 @@ func toTimeFormat(numbering:float)->String:
 	return "%02d:%02d:%02d.%03d" % [hours, minutes, seconds, milisec]
 	pass
 
-func save():
+func getIsOnTop()->bool:
+	var isOnTop = false
+	var parent = get_parent()
+	isOnTop = ProjectSettings.get_setting("display/window/size/always_on_top",true)
+	if parent is Window:
+		isOnTop = parent.always_on_top
+		pass
+	return isOnTop
+
+#func setIsOnTop(to:bool):
+	#var parent = get_parent()
+	#if parent is Window:
+		#parent.always_on_top = to
+	#pass
+
+func checkDir():
 	if DirAccess.dir_exists_absolute(saveDir):
 		pass
 	else:
 		DirAccess.make_dir_recursive_absolute(saveDir)
+	pass
+
+func save():
+	checkDir()
+	
+	var parent = get_parent()
+	var isOnTop:bool = getIsOnTop()
+	
 	
 	saveData = {
 		currentTimer = timering,
 		logs = timerLogs,
 		counter = countingNumber,
+		beepInSec = timerBeepsAtSecond,
+		alwaysOnTop = isOnTop,
+		mute = muteSound,
 	}
 	var saveJSON:String = JSON.stringify(saveData,"\t")
 	var file = FileAccess.open(savePath, FileAccess.WRITE)
@@ -89,10 +120,12 @@ func save():
 	pass
 
 func loaden():
+	checkDir()
 	if FileAccess.file_exists(savePath):
 		var file = FileAccess.open(savePath, FileAccess.READ)
 		var content = file.get_as_text()
 		file.close()
+		print('Settings are:\n'+content)
 		saveData = JSON.parse_string(content)
 		if saveData.has('currentTimer'):
 			timering = saveData['currentTimer']
@@ -103,13 +136,25 @@ func loaden():
 		if saveData.has('counter'):
 			countingNumber = saveData['counter']
 			pass
+		if saveData.has('beepInSec'):
+			timerBeepsAtSecond = saveData['beepInSec']
+			pass
+		if saveData.has('alwaysOnTop'):
+			var parent = get_parent()
+			if parent is Window:
+				parent.always_on_top = saveData['alwaysOnTop']
+			#setOnTop(saveData['alwaysOnTop'])
+			pass
+		if saveData.has('mute'):
+			muteSound = saveData['mute']
 		refreshLogDisplay()
 		
 	pass
 
 func beep():
-	beepSpeaker.stream = beepSound
-	beepSpeaker.play()
+	if not muteSound:
+		beepSpeaker.stream = beepSound
+		beepSpeaker.play()
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -233,6 +278,10 @@ func openSettingWindow():
 	print('Setting')
 	setTimer(false)
 	settingContent.setBufferCounter(countingNumber)
+	settingContent.setBufferBeepInSec(timerBeepsAtSecond)
+	settingContent.setBufferOnTop(getIsOnTop())
+	settingContent.setBufferMute(muteSound)
+	settingContent.setBufferVersion(version)
 	settingWindow.popup_centered()
 	pass
 
@@ -277,6 +326,27 @@ func setCounter(to:int):
 	save()
 	pass
 
+func setBeepInSec(to:float):
+	timerBeepsAtSecond = to
+	save()
+	pass
+
+func setOnTop(to:bool):
+	print('set on top to ')
+	var parent = get_parent()
+	if parent is Window:
+		parent.always_on_top = to
+		pass
+	else:
+		pass
+	save()
+	pass
+
+func setMuteBeep(to:bool):
+	muteSound = to
+	save()
+	pass
+
 func _on_reseter_pressed():
 	resetTimer()
 	pass # Replace with function body.
@@ -307,7 +377,7 @@ func _on_settinger_pressed():
 	pass # Replace with function body.
 
 
-func _on_idiot_stopwatch_setting_change_counter(to):
+func _on_idiot_stopwatch_setting_change_counter(to:int):
 	setCounter(to)
 	pass # Replace with function body.
 
@@ -317,7 +387,7 @@ func _on_setting_window_close_requested():
 	pass # Replace with function body.
 
 
-func _on_idiot_stopwatch_setting_offer_reset(the):
+func _on_idiot_stopwatch_setting_offer_reset(the:String):
 	confirmReset(the)
 	pass # Replace with function body.
 
@@ -339,4 +409,20 @@ func _on_are_you_sure_custom_action(action):
 
 func _on_copy_now_pressed():
 	copyEverything()
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_change_beep_in_sec(to:float):
+	setBeepInSec(to)
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_change_on_top(to):
+	#print('wahuuuu')
+	setOnTop(to)
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_change_mute(to):
+	setMuteBeep(to)
 	pass # Replace with function body.

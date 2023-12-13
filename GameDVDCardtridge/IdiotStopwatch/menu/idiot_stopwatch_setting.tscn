@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://qpb82r0y1a0m"]
+[gd_scene load_steps=9 format=3 uid="uid://qpb82r0y1a0m"]
 
 [ext_resource type="Script" path="res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd" id="1_qgsuf"]
+[ext_resource type="Texture2D" uid="uid://dtiik82sm6t3e" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/nvmButtonLeft.png" id="2_3bgad"]
+[ext_resource type="Texture2D" uid="uid://c3ab67kf7ffw4" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyReset.png" id="3_wtok4"]
+[ext_resource type="Texture2D" uid="uid://bf2rbir5e2y38" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/Shred.png" id="4_bhgyu"]
+[ext_resource type="Texture2D" uid="uid://37amh6gnarj6" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png" id="5_t5k7h"]
+[ext_resource type="Texture2D" uid="uid://b0g6rvk00rxow" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/TimerKitchen.png" id="6_563fx"]
+[ext_resource type="Texture2D" uid="uid://bc43hssfq6iq3" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/AlwaysOnTop.png" id="7_jib2q"]
+[ext_resource type="Texture2D" uid="uid://lvrl1aj655bd" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/soundSpeakerMuteIcon.png" id="8_gian4"]
 
 [node name="IdiotStopwatchSetting" type="Control"]
 layout_mode = 3
@@ -11,51 +18,152 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qgsuf")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
 
-[node name="LabelClears" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Titler" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="ScrollContainer/VBoxContainer/Titler"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+icon = ExtResource("2_3bgad")
+expand_icon = true
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Titler"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 72
+text = "Settings
+"
+
+[node name="LabelClears" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "Deletes"
 
-[node name="ResetBar" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ResetBar" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="ClearCounter" type="Button" parent="VBoxContainer/ResetBar"]
+[node name="ClearCounter" type="Button" parent="ScrollContainer/VBoxContainer/ResetBar"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Clear Counter"
+icon = ExtResource("3_wtok4")
+expand_icon = true
 
-[node name="ClearLog" type="Button" parent="VBoxContainer/ResetBar"]
+[node name="ClearLog" type="Button" parent="ScrollContainer/VBoxContainer/ResetBar"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Clear Logs"
+icon = ExtResource("4_bhgyu")
+expand_icon = true
 
-[node name="LabelSets" type="Label" parent="VBoxContainer"]
+[node name="LabelSets" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "Sets"
 
-[node name="SetBar" type="HBoxContainer" parent="VBoxContainer"]
+[node name="SetBar" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="LabelCounterSpinBox" type="Label" parent="VBoxContainer/SetBar"]
+[node name="LabelCounterSpinBox" type="Label" parent="ScrollContainer/VBoxContainer/SetBar"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 48
-text = "Set Counter Number:"
+text = "Set Counter Number"
 
-[node name="CounterSpinBox" type="SpinBox" parent="VBoxContainer/SetBar"]
+[node name="Icon" type="TextureRect" parent="ScrollContainer/VBoxContainer/SetBar"]
 layout_mode = 2
+texture = ExtResource("5_t5k7h")
+expand_mode = 2
+
+[node name="CounterSpinBox" type="SpinBox" parent="ScrollContainer/VBoxContainer/SetBar"]
+layout_mode = 2
+rounded = true
 alignment = 2
 
-[connection signal="pressed" from="VBoxContainer/ResetBar/ClearCounter" to="." method="_on_clear_counter_pressed"]
-[connection signal="pressed" from="VBoxContainer/ResetBar/ClearLog" to="." method="_on_clear_log_pressed"]
-[connection signal="value_changed" from="VBoxContainer/SetBar/CounterSpinBox" to="." method="_on_spin_box_value_changed"]
+[node name="SetBarBeepInSec" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LabelCounterSpinBox" type="Label" parent="ScrollContainer/VBoxContainer/SetBarBeepInSec"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Set Beep in second of"
+
+[node name="Icon" type="TextureRect" parent="ScrollContainer/VBoxContainer/SetBarBeepInSec"]
+layout_mode = 2
+texture = ExtResource("6_563fx")
+expand_mode = 2
+
+[node name="CounterSpinBox" type="SpinBox" parent="ScrollContainer/VBoxContainer/SetBarBeepInSec"]
+layout_mode = 2
+max_value = 180.0
+value = 9.0
+rounded = true
+alignment = 2
+suffix = "s"
+custom_arrow_step = 9.0
+
+[node name="AlwaysOnTop" type="CheckButton" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+button_pressed = true
+text = "Always On Top"
+icon = ExtResource("7_jib2q")
+expand_icon = true
+
+[node name="MuteBeep" type="CheckButton" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Mute Beep"
+icon = ExtResource("8_gian4")
+expand_icon = true
+
+[node name="LabelAbout" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "About"
+
+[node name="AboutText" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 24
+bbcode_enabled = true
+text = "Idiot Stopwatch"
+fit_content = true
+scroll_active = false
+context_menu_enabled = true
+selection_enabled = true
+
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Titler/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ResetBar/ClearCounter" to="." method="_on_clear_counter_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ResetBar/ClearLog" to="." method="_on_clear_log_pressed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/SetBar/CounterSpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="value_changed" from="ScrollContainer/VBoxContainer/SetBarBeepInSec/CounterSpinBox" to="." method="_on_counter_spin_box_value_changed"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/AlwaysOnTop" to="." method="_on_always_on_top_toggled"]
+[connection signal="toggled" from="ScrollContainer/VBoxContainer/MuteBeep" to="." method="_on_mute_beep_toggled"]
+[connection signal="meta_clicked" from="ScrollContainer/VBoxContainer/AboutText" to="." method="_on_about_text_meta_clicked"]

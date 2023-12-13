@@ -11,19 +11,23 @@ config_version=5
 [application]
 
 config/name="Idiot Stopwatch"
+config/name_localized={
+"id": "Stopwatch Idiot"
+}
 config/description="Special case Stopwatch"
 run/main_scene="res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Perkedel Technologies/IdiotStopwatch"
-config/features=PackedStringArray("4.1", "Forward Plus")
+config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.0823529, 0.0823529, 0.0823529, 1)
 boot_splash/image="res://GameDVDCardtridge/IdiotStopwatch/sprites/HexagonEngineBootSplash-PoliticalManeuver.png"
-config/icon="res://icon.svg"
+config/icon="res://GameDVDCardtridge/IdiotStopwatch/sprites/IdiotStopwatch.png"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/always_on_top=true
 window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
