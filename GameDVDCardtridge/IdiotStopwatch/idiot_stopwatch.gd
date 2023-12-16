@@ -2,10 +2,10 @@ extends Node
 
 const version:String = '2024.01'
 
-@onready var timerDisplaySec:Label = $Control/VBoxContainer/Timering/TimerDisplaySec
-@onready var timerDisplayFormat:Label = $Control/VBoxContainer/Timering/TimerDisplayFormat
+@onready var timerDisplaySec:Label = $Control/VBoxContainer/TimeringOver/Timering/TimerDisplaySec
+@onready var timerDisplayFormat:Label = $Control/VBoxContainer/TimeringOver/Timering/TimerDisplayFormat
 @onready var logDisplay:RichTextLabel = $Control/VBoxContainer/Logs
-@onready var counterDisplay:Label = $Control/VBoxContainer/HBoxContainer/Counter
+@onready var counterDisplay:Label = $Control/VBoxContainer/HBoxContainer/CounterOverscroll/HBoxContainer/Counter
 @onready var resetButton:Button = $Control/VBoxContainer/Buttons/Reseter
 @onready var lapButton:Button = $Control/VBoxContainer/Buttons/Lapper
 @onready var startButton:Button = $Control/VBoxContainer/Buttons/StartStop
@@ -14,9 +14,10 @@ const version:String = '2024.01'
 @onready var settingWindow:Window = $Control/SettingWindow
 @onready var confirmWindow:ConfirmationDialog = $Control/AreYouSure
 @onready var settingContent:IdiotStopWatchSetting = $Control/SettingWindow/IdiotStopwatchSetting
-@onready var appIcon:TextureRect = $Control/VBoxContainer/Timering/AppIcon
-@onready var muteIcon:TextureRect = $Control/VBoxContainer/Timering/MuteIcon
-@onready var isOnTopIcon:TextureRect = $Control/VBoxContainer/Timering/IsOnTopIcon
+@onready var appIcon:TextureRect = $Control/VBoxContainer/TimeringOver/Timering/AppIcon
+@onready var muteIcon:TextureRect = $Control/VBoxContainer/TimeringOver/Timering/MuteIcon
+@onready var isOnTopIcon:TextureRect = $Control/VBoxContainer/TimeringOver/Timering/IsOnTopIcon
+@onready var copyExtrasButton:MenuButton = $Control/VBoxContainer/HBoxContainer/CopyExtras
 @onready var beepSound:AudioStream = preload("res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg")
 
 @export var timerBeepsAtSecond:float = 9.0
@@ -24,10 +25,10 @@ const version:String = '2024.01'
 @export var savePath:String = "user://Simpan/IdiotStopwatch/IdiotStopwatch.json"
 @export var saveDir:String = "user://Simpan/IdiotStopwatch/"
 
-var started:bool = false
-var countingNumber:int = 0
-var timering:float = 0.0
-var hadBeeped:bool = false
+var started:bool = false # is stopwatch running
+var countingNumber:int = 0 # number of reset while the stopwatch running
+var timering:float = 0.0 # main timer
+var hadBeeped:bool = false # beep once flag
 var saveData:Dictionary = {
 	currentTimer = 0,
 	logs = [0,0,0],
@@ -55,6 +56,8 @@ var resetReadyButtonStyleHover:StyleBox = preload("res://GameDVDCardtridge/Idiot
 # Called when the node enters the scene tree for the first time.
 func _ready():
 #	resetButton.add_theme_stylebox_override("normal",defaultButtonStyle)
+	# https://forum.godotengine.org/t/how-is-menubutton-node-supposed-to-work/1559/4?u=joelwindows7
+	copyExtrasButton.get_popup().id_pressed.connect(_on_CopyExtras_Selected)
 	appIcon.tooltip_text = "Idiot Stopwatch v"+version
 	loaden()
 	resetButton.grab_focus()
@@ -153,6 +156,7 @@ func loaden():
 			pass
 		if saveData.has('mute'):
 			muteSound = saveData['mute']
+	getIsOnTop()
 	refreshLogDisplay()
 	refreshStatusDisplay()
 		
@@ -217,6 +221,54 @@ func getDocument()->String:
 func copyEverything():
 	DisplayServer.clipboard_set(getDocument())
 	pass
+
+func copyExtrasMenu(which:int)->String:
+	var toBeCopied:String = ''
+	match(which):
+		0:
+			# copy counter
+			toBeCopied = String.num_int64(countingNumber)
+			pass
+		1:
+			# copy logs plain
+			for i in range(0,timerLogs.size()):
+				toBeCopied += String.num(timerLogs[i]) + "\t\t\t" + toTimeFormat(timerLogs[i]) + "\n"
+				pass
+			pass
+		2:
+			# copy logs markdown table
+			toBeCopied += '| Seconds | HH:MM::SS.MMM |\n'
+			toBeCopied += '| --- | --- |\n'
+			var logsing:String = ''
+			for i in range(0,timerLogs.size()):
+				logsing += '| '+String.num(timerLogs[i])+' | '+toTimeFormat(timerLogs[i])+' |\n'
+				pass
+			toBeCopied += logsing
+			pass
+		3:
+			# copy logs markdown list
+			var logsing:String = ''
+			for i in range(0,timerLogs.size()):
+				logsing += '- '+String.num(timerLogs[i])+'\t\t\t'+toTimeFormat(timerLogs[i])+'\n'
+				pass
+			toBeCopied += logsing
+			pass
+		4:
+			# copy Last Timer
+			toBeCopied += String.num(timering)
+			pass
+		5:
+			# copy last timer format
+			toBeCopied += toTimeFormat(timering)
+			pass
+		6:
+			# copy last timer full
+			toBeCopied += String.num(timering) + "\n\n\n" + toTimeFormat(timering)
+			pass
+		_:
+			pass
+	DisplayServer.clipboard_set(toBeCopied)
+	return toBeCopied
 
 func refreshLogDisplay():
 	"""
@@ -293,6 +345,8 @@ func openSettingWindow():
 	settingContent.setBufferOnTop(getIsOnTop())
 	settingContent.setBufferMute(muteSound)
 	settingContent.setBufferVersion(version)
+	settingWindow.always_on_top = getIsOnTop()
+	settingWindow.reset_size()
 	settingWindow.popup_centered()
 	pass
 
@@ -300,6 +354,7 @@ func closeSettingWindow():
 	settingWindow.hide()
 	setOnTop(getIsOnTop())
 	setTimer(false)
+	save()
 	pass
 
 func _timerCondition():
@@ -358,6 +413,10 @@ func setOnTop(to:bool):
 func setMuteBeep(to:bool):
 	muteSound = to
 	save()
+	pass
+
+func _on_CopyExtras_Selected(id:int):
+	copyExtrasMenu(id)
 	pass
 
 func _on_reseter_pressed():

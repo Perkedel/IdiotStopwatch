@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dgms72uy3ucqq"]
+[gd_scene load_steps=15 format=3 uid="uid://dgms72uy3ucqq"]
 
 [ext_resource type="Script" path="res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd" id="1_4xx3o"]
 [ext_resource type="AudioStream" uid="uid://xub4ogsfofhq" path="res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg" id="2_7m24n"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://37amh6gnarj6" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png" id="4_16wu0"]
 [ext_resource type="Texture2D" uid="uid://c86hl56b0e76v" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/LapButton.png" id="4_n37xd"]
 [ext_resource type="Texture2D" uid="uid://bj3sfab2qy6y5" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/settingButton.png" id="5_r00vd"]
+[ext_resource type="Texture2D" uid="uid://bw2elsrfegct" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/UpMoreTriangle.png" id="6_f1gnc"]
 [ext_resource type="Texture2D" uid="uid://dho2c5fb680r2" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/IdiotStopwatch.png" id="7_nei58"]
 
 [node name="IdiotStopwatch" type="Node"]
@@ -45,10 +46,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Timering" type="HBoxContainer" parent="Control/VBoxContainer"]
+[node name="TimeringOver" type="ScrollContainer" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+horizontal_scroll_mode = 0
 
-[node name="TimerDisplaySec" type="Label" parent="Control/VBoxContainer/Timering"]
+[node name="Timering" type="HBoxContainer" parent="Control/VBoxContainer/TimeringOver"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TimerDisplaySec" type="Label" parent="Control/VBoxContainer/TimeringOver/Timering"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(1, 1, 0, 1)
@@ -57,14 +64,14 @@ theme_override_colors/font_outline_color = Color(0, 1, 1, 1)
 theme_override_font_sizes/font_size = 72
 text = "1234890"
 
-[node name="IsOnTopIcon" type="TextureRect" parent="Control/VBoxContainer/Timering"]
+[node name="IsOnTopIcon" type="TextureRect" parent="Control/VBoxContainer/TimeringOver/Timering"]
 layout_mode = 2
 tooltip_text = "Always on Top enabled"
 texture = ExtResource("2_a1wsd")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="MuteIcon" type="TextureRect" parent="Control/VBoxContainer/Timering"]
+[node name="MuteIcon" type="TextureRect" parent="Control/VBoxContainer/TimeringOver/Timering"]
 visible = false
 layout_mode = 2
 tooltip_text = "Audio Muted"
@@ -72,13 +79,13 @@ texture = ExtResource("2_k4rbg")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="AppIcon" type="TextureRect" parent="Control/VBoxContainer/Timering"]
+[node name="AppIcon" type="TextureRect" parent="Control/VBoxContainer/TimeringOver/Timering"]
 layout_mode = 2
 texture = ExtResource("7_nei58")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="TimerDisplayFormat" type="Label" parent="Control/VBoxContainer/Timering"]
+[node name="TimerDisplayFormat" type="Label" parent="Control/VBoxContainer/TimeringOver/Timering"]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 72
@@ -144,23 +151,61 @@ alignment = 2
 [node name="CopyNow" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "Copy full report to clipboard"
 theme_override_font_sizes/font_size = 48
 text = "COPY"
 icon = ExtResource("2_fn2ce")
 expand_icon = true
 
-[node name="Spacing" type="Control" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="CopyExtras" type="MenuButton" parent="Control/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+tooltip_text = "More copy options"
+focus_mode = 2
+icon = ExtResource("6_f1gnc")
+flat = false
+icon_alignment = 1
+expand_icon = true
+item_count = 7
+popup/item_0/text = "Copy Counter"
+popup/item_0/id = 0
+popup/item_1/text = "Copy Logs (Plain)"
+popup/item_1/id = 1
+popup/item_2/text = "Copy Logs (Markdown table)"
+popup/item_2/id = 2
+popup/item_3/text = "Copy Logs (Markdown list)"
+popup/item_3/id = 3
+popup/item_4/text = "Copy Last timer (second)"
+popup/item_4/id = 4
+popup/item_5/text = "Copy Last Timer (HH:MM:SS.MMM)"
+popup/item_5/id = 5
+popup/item_6/text = "Copy Last Timer (Second & HH:MM:SS.MM)"
+popup/item_6/id = 6
+
+[node name="CounterOverscroll" type="ScrollContainer" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer/HBoxContainer/CounterOverscroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Spacing" type="Control" parent="Control/VBoxContainer/HBoxContainer/CounterOverscroll/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Iconing" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="Iconing" type="TextureRect" parent="Control/VBoxContainer/HBoxContainer/CounterOverscroll/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "How many resets when this stopwatch is running"
 texture = ExtResource("4_16wu0")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Counter" type="Label" parent="Control/VBoxContainer/HBoxContainer"]
+[node name="Counter" type="Label" parent="Control/VBoxContainer/HBoxContainer/CounterOverscroll/HBoxContainer"]
 layout_mode = 2
+tooltip_text = "How many resets when this stopwatch is running"
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 96
 text = "9999999999999999999"
@@ -201,6 +246,7 @@ expand_icon = true
 [node name="Lapper" type="Button" parent="Control/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "Log the timer without reseting the timer itself"
 theme_override_colors/icon_normal_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 72
 icon = ExtResource("4_n37xd")
@@ -236,6 +282,7 @@ size_flags_horizontal = 3
 [node name="Settinger" type="Button" parent="Control/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+tooltip_text = "Open settings"
 theme_override_font_sizes/font_size = 72
 icon = ExtResource("5_r00vd")
 expand_icon = true
@@ -243,10 +290,11 @@ expand_icon = true
 [node name="SettingWindow" type="Window" parent="Control"]
 title = "Settings"
 initial_position = 1
-size = Vector2i(1200, 600)
+size = Vector2i(1280, 720)
 visible = false
-transient = true
+wrap_controls = true
 exclusive = true
+min_size = Vector2i(1280, 720)
 content_scale_size = Vector2i(1200, 600)
 content_scale_aspect = 4
 
@@ -256,6 +304,7 @@ content_scale_aspect = 4
 title = "Warning"
 initial_position = 1
 size = Vector2i(1000, 200)
+ok_button_text = "Yes"
 dialog_text = "Are you sure to..."
 
 [node name="Beeper" type="AudioStreamPlayer" parent="."]

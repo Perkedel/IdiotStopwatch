@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpuwv0664e7rb"]
+
+[ext_resource type="Script" path="res://GameDVDCardtridge/IdiotStopwatch/menu/Test/test_menu_menu.gd" id="1_1kalr"]
+[ext_resource type="Texture2D" uid="uid://b00t3iebr7hws" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/TrashDelete.png" id="1_3uyle"]
+[ext_resource type="Texture2D" uid="uid://37amh6gnarj6" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png" id="1_crc25"]
+
+[node name="TestMenuMenu" type="MenuButton"]
+offset_left = 121.0
+offset_top = 20.0
+offset_right = 768.0
+offset_bottom = 318.0
+text = "MENU"
+icon = ExtResource("1_crc25")
+flat = false
+expand_icon = true
+item_count = 1
+popup/item_0/text = "hey"
+popup/item_0/icon = ExtResource("1_3uyle")
+popup/item_0/id = 0
+script = ExtResource("1_1kalr")

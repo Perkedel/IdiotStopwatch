@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://qpb82r0y1a0m"]
+[gd_scene load_steps=11 format=3 uid="uid://qpb82r0y1a0m"]
 
 [ext_resource type="Script" path="res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd" id="1_qgsuf"]
 [ext_resource type="Texture2D" uid="uid://dtiik82sm6t3e" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/nvmButtonLeft.png" id="2_3bgad"]
@@ -8,6 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://b0g6rvk00rxow" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/TimerKitchen.png" id="6_563fx"]
 [ext_resource type="Texture2D" uid="uid://bc43hssfq6iq3" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/AlwaysOnTop.png" id="7_jib2q"]
 [ext_resource type="Texture2D" uid="uid://lvrl1aj655bd" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/soundSpeakerMuteIcon.png" id="8_gian4"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_62pcn"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_2ua2q"]
+events = [SubResource("InputEventAction_62pcn")]
 
 [node name="IdiotStopwatchSetting" type="Control"]
 layout_mode = 3
@@ -38,7 +44,9 @@ layout_mode = 2
 [node name="BackButton" type="Button" parent="ScrollContainer/VBoxContainer/Titler"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+tooltip_text = "Go Back"
 theme_override_font_sizes/font_size = 72
+shortcut = SubResource("Shortcut_2ua2q")
 icon = ExtResource("2_3bgad")
 expand_icon = true
 
@@ -61,6 +69,7 @@ alignment = 1
 [node name="ClearCounter" type="Button" parent="ScrollContainer/VBoxContainer/ResetBar"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+tooltip_text = "Reset counter back to 0"
 theme_override_font_sizes/font_size = 48
 text = "Clear Counter"
 icon = ExtResource("3_wtok4")
@@ -69,6 +78,7 @@ expand_icon = true
 [node name="ClearLog" type="Button" parent="ScrollContainer/VBoxContainer/ResetBar"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+tooltip_text = "Purge timer logs"
 theme_override_font_sizes/font_size = 48
 text = "Clear Logs"
 icon = ExtResource("4_bhgyu")

@@ -50,7 +50,10 @@ func refreshAbout():
 	# https://docs.godotengine.org/en/4.1/tutorials/ui/bbcode_in_richtextlabel.html
 	var content:String = ''
 	content += '[img=100]res://GameDVDCardtridge/IdiotStopwatch/sprites/IdiotStopwatch.png[/img] Idiot Stopwatch [b]v'+_bufferVersion+'[/b]\n\n'
-	content += 'by JOELwindows7\nPerkedel Technologies\nCodes = GNU GPL v3\nAssets = CC4.0-BY-SA\n\n'
+	content += 'by [url=https://perkedel.netlify.app/@JOELwindows7]JOELwindows7[/url]\n'
+	content += '[url=https://perkedel.netlify.app][img=32]res://GameDVDCardtridge/IdiotStopwatch/sprites/Perkedel Icon.png[/img] Perkedel Technologies[/url]\n'
+	content += 'Codes = [url=https://www.gnu.org/licenses/gpl-3.0.html]GNU GPL v3[/url]\n'
+	content += 'Assets = [url=https://creativecommons.org/licenses/by-sa/4.0/]CC4.0-BY-SA[/url]\n\n'
 	content += '[url]https://github.com/Perkedel/IdiotStopwatch[/url]\n'
 	content += 'Made with [img=20]res://icon.svg[/img] Godot Engine [url=https://godotengine.org/license](MIT License)[/url].'
 	aboutText.text = content
@@ -74,6 +77,12 @@ func _notification(what):
 			counterSpinBeepInSec.value = _bufferBeepInSec
 			toggleAlwaysOnTop.button_pressed = _bufferOnTop
 			toggleMute.button_pressed = _bufferMute
+			
+			# self itself also must be always on top per setting
+			#var parent = get_parent()
+			#if parent is Window:
+				#parent.always_on_top = _bufferOnTop
+			
 			refreshAbout()
 			backButton.grab_focus()
 			activo = true
@@ -118,6 +127,9 @@ func _on_back_button_pressed():
 
 func _on_always_on_top_toggled(toggled_on):
 	if activo:
+		var parent = get_parent()
+		if parent is Window:
+			parent.always_on_top = toggled_on
 		emit_signal("changeOnTop",toggled_on)
 		pass
 	pass # Replace with function body.
