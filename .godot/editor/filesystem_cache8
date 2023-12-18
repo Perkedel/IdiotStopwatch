@@ -1,13 +1,13 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1702707174
+::res://::1702879616
 export_presets.cfg::TextFile::-1::1702487219::0::1::::<><>::
 icon.svg::CompressedTexture2D::5348882073330670111::1702269265::1702269277::1::::<><>::
 README.md::TextFile::-1::1702276296::0::1::::<><>::
 ::res://GameDVDCardtridge/::1702269337
-::res://GameDVDCardtridge/IdiotStopwatch/::1702488855
+::res://GameDVDCardtridge/IdiotStopwatch/::1702712225
 do-amarac.ogg::AudioStreamOggVorbis::1655744209192752914::1702275728::1702275728::1::::<><>::
-idiot_stopwatch.gd::GDScript::-1::1702486579::0::1::::<>Node<>::
-idiot_stopwatch.tscn::PackedScene::7606319147386166552::1702488855::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd<>uid://xub4ogsfofhq::::res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg<>uid://qpb82r0y1a0m::::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.tscn<>uid://bc43hssfq6iq3::::res://GameDVDCardtridge/IdiotStopwatch/sprites/AlwaysOnTop.png<>uid://bhj234xeuyxlk::::res://GameDVDCardtridge/IdiotStopwatch/sprites/CopyButton.png<>uid://lvrl1aj655bd::::res://GameDVDCardtridge/IdiotStopwatch/sprites/soundSpeakerMuteIcon.png<>uid://cqqaht45i282::::res://GameDVDCardtridge/IdiotStopwatch/sprites/ResetRefresh.png<>uid://cofdy74g54vss::::res://GameDVDCardtridge/IdiotStopwatch/sprites/Perkedel Short Typeborder.png<>uid://cb3bg86m4pr6l::::res://GameDVDCardtridge/IdiotStopwatch/sprites/ActionButton.png<>uid://37amh6gnarj6::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png<>uid://c86hl56b0e76v::::res://GameDVDCardtridge/IdiotStopwatch/sprites/LapButton.png<>uid://bj3sfab2qy6y5::::res://GameDVDCardtridge/IdiotStopwatch/sprites/settingButton.png<>uid://bw2elsrfegct::::res://GameDVDCardtridge/IdiotStopwatch/sprites/UpMoreTriangle.png<>uid://dho2c5fb680r2::::res://GameDVDCardtridge/IdiotStopwatch/sprites/IdiotStopwatch.png
+idiot_stopwatch.gd::GDScript::-1::1702711764::0::1::::<>Node<>::
+idiot_stopwatch.tscn::PackedScene::7606319147386166552::1702712225::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd<>uid://xub4ogsfofhq::::res://GameDVDCardtridge/IdiotStopwatch/do-amarac.ogg<>uid://qpb82r0y1a0m::::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.tscn<>uid://bc43hssfq6iq3::::res://GameDVDCardtridge/IdiotStopwatch/sprites/AlwaysOnTop.png<>uid://bhj234xeuyxlk::::res://GameDVDCardtridge/IdiotStopwatch/sprites/CopyButton.png<>uid://lvrl1aj655bd::::res://GameDVDCardtridge/IdiotStopwatch/sprites/soundSpeakerMuteIcon.png<>uid://cqqaht45i282::::res://GameDVDCardtridge/IdiotStopwatch/sprites/ResetRefresh.png<>uid://cofdy74g54vss::::res://GameDVDCardtridge/IdiotStopwatch/sprites/Perkedel Short Typeborder.png<>uid://cb3bg86m4pr6l::::res://GameDVDCardtridge/IdiotStopwatch/sprites/ActionButton.png<>uid://37amh6gnarj6::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png<>uid://c86hl56b0e76v::::res://GameDVDCardtridge/IdiotStopwatch/sprites/LapButton.png<>uid://bj3sfab2qy6y5::::res://GameDVDCardtridge/IdiotStopwatch/sprites/settingButton.png<>uid://bw2elsrfegct::::res://GameDVDCardtridge/IdiotStopwatch/sprites/UpMoreTriangle.png<>uid://dho2c5fb680r2::::res://GameDVDCardtridge/IdiotStopwatch/sprites/IdiotStopwatch.png
 idiot_stopwatch_window.tscn::PackedScene::6069950506838631724::1702432646::0::1::::<><>::uid://dgms72uy3ucqq::::res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.tscn
 ::res://GameDVDCardtridge/IdiotStopwatch/audio/::1702275723
 ::res://GameDVDCardtridge/IdiotStopwatch/LedColor/::1702276071
@@ -20,12 +20,12 @@ ButtonStyleboxLEDPinkDark.tres::StyleBoxFlat::569749045628069516::1702276043::0:
 ButtonStyleboxLEDRed.tres::StyleBoxFlat::3793114453810503135::1702271311::0::1::::<><>::
 ButtonStyleboxLEDWhite.tres::StyleBoxFlat::5189398690934301410::1702271311::0::1::::<><>::
 ButtonStyleboxLEDYellow.tres::StyleBoxFlat::36319852380438542::1702271123::0::1::::<><>::
-::res://GameDVDCardtridge/IdiotStopwatch/menu/::1702486908
+::res://GameDVDCardtridge/IdiotStopwatch/menu/::1702712225
 idiot_stopwatch_setting.gd::GDScript::-1::1702486462::0::1::::IdiotStopWatchSetting<>Control<>::
-idiot_stopwatch_setting.tscn::PackedScene::1154108258272152206::1702486908::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd<>uid://dtiik82sm6t3e::::res://GameDVDCardtridge/IdiotStopwatch/sprites/nvmButtonLeft.png<>uid://c3ab67kf7ffw4::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyReset.png<>uid://bf2rbir5e2y38::::res://GameDVDCardtridge/IdiotStopwatch/sprites/Shred.png<>uid://37amh6gnarj6::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png<>uid://b0g6rvk00rxow::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TimerKitchen.png<>uid://bc43hssfq6iq3::::res://GameDVDCardtridge/IdiotStopwatch/sprites/AlwaysOnTop.png<>uid://lvrl1aj655bd::::res://GameDVDCardtridge/IdiotStopwatch/sprites/soundSpeakerMuteIcon.png
-::res://GameDVDCardtridge/IdiotStopwatch/menu/Test/::1702486908
+idiot_stopwatch_setting.tscn::PackedScene::1154108258272152206::1702712225::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd<>uid://dtiik82sm6t3e::::res://GameDVDCardtridge/IdiotStopwatch/sprites/nvmButtonLeft.png<>uid://c3ab67kf7ffw4::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyReset.png<>uid://bf2rbir5e2y38::::res://GameDVDCardtridge/IdiotStopwatch/sprites/Shred.png<>uid://37amh6gnarj6::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png<>uid://b0g6rvk00rxow::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TimerKitchen.png<>uid://bc43hssfq6iq3::::res://GameDVDCardtridge/IdiotStopwatch/sprites/AlwaysOnTop.png<>uid://lvrl1aj655bd::::res://GameDVDCardtridge/IdiotStopwatch/sprites/soundSpeakerMuteIcon.png
+::res://GameDVDCardtridge/IdiotStopwatch/menu/Test/::1702712225
 test_menu_menu.gd::GDScript::-1::1702483750::0::1::::<>MenuButton<>::
-test_menu_menu.tscn::PackedScene::8254756898663986643::1702486908::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/menu/Test/test_menu_menu.gd<>uid://b00t3iebr7hws::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TrashDelete.png<>uid://37amh6gnarj6::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png
+test_menu_menu.tscn::PackedScene::8254756898663986643::1702712225::0::1::::<><>::res://GameDVDCardtridge/IdiotStopwatch/menu/Test/test_menu_menu.gd<>uid://b00t3iebr7hws::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TrashDelete.png<>uid://37amh6gnarj6::::res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png
 ::res://GameDVDCardtridge/IdiotStopwatch/sprites/::1702486109
 ActionButton.png::CompressedTexture2D::4900906001638184821::1702441106::1702441107::1::::<><>::
 ActionButtonGray.png::CompressedTexture2D::2797884762212879689::1702441106::1702441107::1::::<><>::

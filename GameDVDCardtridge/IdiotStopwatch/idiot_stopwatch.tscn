@@ -91,7 +91,11 @@ theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 72
 text = "00:00:00"
 
-[node name="Logs" type="RichTextLabel" parent="Control/VBoxContainer"]
+[node name="ContainsLogs" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Logs" type="RichTextLabel" parent="Control/VBoxContainer/ContainsLogs"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -107,6 +111,11 @@ text = "1234
 12312
 
 "
+
+[node name="IdiotStopwatchSetting" parent="Control/VBoxContainer/ContainsLogs" instance=ExtResource("2_47uch")]
+visible = false
+layout_mode = 2
+handoverSystemItself = NodePath("../../../..")
 
 [node name="Loggings" type="HBoxContainer" parent="Control/VBoxContainer"]
 visible = false
@@ -310,6 +319,11 @@ dialog_text = "Are you sure to..."
 [node name="Beeper" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_7m24n")
 
+[connection signal="changeBeepInSec" from="Control/VBoxContainer/ContainsLogs/IdiotStopwatchSetting" to="." method="_on_idiot_stopwatch_setting_change_beep_in_sec"]
+[connection signal="changeCounter" from="Control/VBoxContainer/ContainsLogs/IdiotStopwatchSetting" to="." method="_on_idiot_stopwatch_setting_change_counter"]
+[connection signal="changeMute" from="Control/VBoxContainer/ContainsLogs/IdiotStopwatchSetting" to="." method="_on_idiot_stopwatch_setting_change_mute"]
+[connection signal="changeOnTop" from="Control/VBoxContainer/ContainsLogs/IdiotStopwatchSetting" to="." method="_on_idiot_stopwatch_setting_change_on_top"]
+[connection signal="offerReset" from="Control/VBoxContainer/ContainsLogs/IdiotStopwatchSetting" to="." method="_on_idiot_stopwatch_setting_offer_reset"]
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/CopyNow" to="." method="_on_copy_now_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Adjust/Add" to="." method="_on_add_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/Adjust/Decrease" to="." method="_on_decrease_pressed"]

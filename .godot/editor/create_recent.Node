@@ -1,9 +1,10 @@
-ScrollContainer
 HBoxContainer
+CenterContainer
+Control
+ScrollContainer
 PopupMenu
 MenuButton
 Button
-Control
 TextureRect
 RichTextLabel
 Label
@@ -11,4 +12,3 @@ AspectRatioContainer
 CheckButton
 ConfirmationDialog
 SpinBox
-VBoxContainer

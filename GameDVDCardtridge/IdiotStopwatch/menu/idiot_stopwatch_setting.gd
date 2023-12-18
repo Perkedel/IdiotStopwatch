@@ -16,6 +16,8 @@ var _bufferVersion:String = '???'
 @onready var aboutText:RichTextLabel = $ScrollContainer/VBoxContainer/AboutText
 @onready var backButton:Button = $ScrollContainer/VBoxContainer/Titler/BackButton
 
+@export var handoverSystemItself:NodePath
+
 signal changeCounter(to:int)
 signal changeBeepInSec(to:float)
 signal changeOnTop(to:bool)
@@ -54,7 +56,9 @@ func refreshAbout():
 	content += '[url=https://perkedel.netlify.app][img=32]res://GameDVDCardtridge/IdiotStopwatch/sprites/Perkedel Icon.png[/img] Perkedel Technologies[/url]\n'
 	content += 'Codes = [url=https://www.gnu.org/licenses/gpl-3.0.html]GNU GPL v3[/url]\n'
 	content += 'Assets = [url=https://creativecommons.org/licenses/by-sa/4.0/]CC4.0-BY-SA[/url]\n\n'
-	content += '[url]https://github.com/Perkedel/IdiotStopwatch[/url]\n'
+	content += 'Source code: [url]https://github.com/Perkedel/IdiotStopwatch[/url]\n'
+	content += 'Sounds generated with [url=https://sfbgames.itch.io/chiptone]Chiptone from SFBGames[/url]\n'
+	content += '\n'
 	content += 'Made with [img=20]res://icon.svg[/img] Godot Engine [url=https://godotengine.org/license](MIT License)[/url].'
 	aboutText.text = content
 	pass
@@ -63,6 +67,18 @@ func goBack():
 	var parent = get_parent()
 	if parent is Window:
 		parent.emit_signal('close_requested')
+	#elif parent is Control:
+		#var grandparent = parent.get_parent()
+		#if grandparent.has_method('closeSettingWindow'):
+			#grandparent.call('closeSettingWindow')
+		#pass
+	else:
+		if handoverSystemItself:
+			print('Tryain get backing')
+			var itself = get_node(handoverSystemItself)
+			if itself.has_method('closeSettingWindow'):
+				itself.call('closeSettingWindow')
+			pass
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

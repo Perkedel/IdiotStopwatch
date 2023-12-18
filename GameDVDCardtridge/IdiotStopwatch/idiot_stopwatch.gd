@@ -4,7 +4,7 @@ const version:String = '2024.01'
 
 @onready var timerDisplaySec:Label = $Control/VBoxContainer/TimeringOver/Timering/TimerDisplaySec
 @onready var timerDisplayFormat:Label = $Control/VBoxContainer/TimeringOver/Timering/TimerDisplayFormat
-@onready var logDisplay:RichTextLabel = $Control/VBoxContainer/Logs
+@onready var logDisplay:RichTextLabel = $Control/VBoxContainer/ContainsLogs/Logs
 @onready var counterDisplay:Label = $Control/VBoxContainer/HBoxContainer/CounterOverscroll/HBoxContainer/Counter
 @onready var resetButton:Button = $Control/VBoxContainer/Buttons/Reseter
 @onready var lapButton:Button = $Control/VBoxContainer/Buttons/Lapper
@@ -13,7 +13,9 @@ const version:String = '2024.01'
 @onready var backPanel:Panel = $Control/Bgron
 @onready var settingWindow:Window = $Control/SettingWindow
 @onready var confirmWindow:ConfirmationDialog = $Control/AreYouSure
+#@onready var settingContent:IdiotStopWatchSetting = $Control/SettingWindow/IdiotStopwatchSetting
 @onready var settingContent:IdiotStopWatchSetting = $Control/SettingWindow/IdiotStopwatchSetting
+@onready var settingOwnContent:IdiotStopWatchSetting = $Control/VBoxContainer/ContainsLogs/IdiotStopwatchSetting
 @onready var appIcon:TextureRect = $Control/VBoxContainer/TimeringOver/Timering/AppIcon
 @onready var muteIcon:TextureRect = $Control/VBoxContainer/TimeringOver/Timering/MuteIcon
 @onready var isOnTopIcon:TextureRect = $Control/VBoxContainer/TimeringOver/Timering/IsOnTopIcon
@@ -24,6 +26,7 @@ const version:String = '2024.01'
 @export var muteSound:bool = false
 @export var savePath:String = "user://Simpan/IdiotStopwatch/IdiotStopwatch.json"
 @export var saveDir:String = "user://Simpan/IdiotStopwatch/"
+@export var settingUsesSameWindow:bool = true
 
 var started:bool = false # is stopwatch running
 var countingNumber:int = 0 # number of reset while the stopwatch running
@@ -38,6 +41,7 @@ var saveData:Dictionary = {
 	mute= false,
 }
 var dialogDoThe:String = ''
+var flagSettingOpened:bool = false
 
 var timerLogs:PackedFloat64Array = [0,0,0]
 
@@ -61,6 +65,7 @@ func _ready():
 	appIcon.tooltip_text = "Idiot Stopwatch v"+version
 	loaden()
 	resetButton.grab_focus()
+	beep()
 	pass # Replace with function body.
 
 func toTimeFormat(numbering:float)->String:
@@ -324,12 +329,14 @@ func resetDo(the:String):
 	pass
 
 func logTimer():
+	#closeSettingWindow()
 	timerLogs.insert(0,timering)
 	refreshLogDisplay()
 	save()
 	pass
 
 func resetTimer():
+	#closeSettingWindow()
 	logTimer()
 	timering = 0
 	if started:
@@ -337,23 +344,49 @@ func resetTimer():
 	save()
 	pass
 
+func toggleSettingWindow():
+	if flagSettingOpened:
+		closeSettingWindow()
+	else:
+		openSettingWindow()
+	pass
+
 func openSettingWindow():
 	print('Setting')
-	setTimer(false)
-	settingContent.setBufferCounter(countingNumber)
-	settingContent.setBufferBeepInSec(timerBeepsAtSecond)
-	settingContent.setBufferOnTop(getIsOnTop())
-	settingContent.setBufferMute(muteSound)
-	settingContent.setBufferVersion(version)
-	settingWindow.always_on_top = getIsOnTop()
-	settingWindow.reset_size()
-	settingWindow.popup_centered()
+	if not settingUsesSameWindow:
+		setTimer(false)
+	if settingUsesSameWindow:
+		settingContent.setBufferCounter(countingNumber)
+		settingContent.setBufferBeepInSec(timerBeepsAtSecond)
+		settingOwnContent.setBufferOnTop(getIsOnTop())
+		settingOwnContent.setBufferMute(muteSound)
+		settingOwnContent.setBufferVersion(version)
+		logDisplay.hide()
+		settingOwnContent.show()
+		pass
+	else:
+		settingContent.setBufferCounter(countingNumber)
+		settingContent.setBufferBeepInSec(timerBeepsAtSecond)
+		settingContent.setBufferOnTop(getIsOnTop())
+		settingContent.setBufferMute(muteSound)
+		settingContent.setBufferVersion(version)
+		settingWindow.always_on_top = getIsOnTop()
+		settingWindow.reset_size()
+		settingWindow.popup_centered()
+		pass
+	flagSettingOpened = true
 	pass
 
 func closeSettingWindow():
-	settingWindow.hide()
+	if settingUsesSameWindow:
+		settingOwnContent.hide()
+		logDisplay.show()
+		pass
+	else:
+		setTimer(false)
+		settingWindow.hide()
 	setOnTop(getIsOnTop())
-	setTimer(false)
+	flagSettingOpened = false
 	save()
 	pass
 
@@ -374,6 +407,7 @@ func setTimer(to:bool):
 	_timerCondition()
 
 func toggleTimer():
+	#closeSettingWindow()
 	started = not started
 	_timerCondition()
 	pass
@@ -445,7 +479,8 @@ func _on_decrease_pressed():
 
 
 func _on_settinger_pressed():
-	openSettingWindow()
+	#openSettingWindow()
+	toggleSettingWindow()
 	pass # Replace with function body.
 
 
