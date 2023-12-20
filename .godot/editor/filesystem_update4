@@ -1,5 +1,5 @@
 res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.tscn
-res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd
 res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.tscn
-res://GameDVDCardtridge/IdiotStopwatch/menu/Test/test_menu_menu.tscn
 res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd
+res://GameDVDCardtridge/IdiotStopwatch/idiot_stopwatch.gd
+res://GameDVDCardtridge/IdiotStopwatch/menu/Test/test_menu_menu.tscn

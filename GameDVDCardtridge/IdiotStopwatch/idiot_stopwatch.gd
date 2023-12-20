@@ -268,9 +268,15 @@ func copyExtrasMenu(which:int)->String:
 			pass
 		6:
 			# copy last timer full
-			toBeCopied += String.num(timering) + "\n\n\n" + toTimeFormat(timering)
+			toBeCopied += String.num(timering) + "\t\t\t" + toTimeFormat(timering)
+			pass
+		7:
+			# copy full report
+			#copyEverything()
+			toBeCopied = getDocument()
 			pass
 		_:
+			#copyEverything()
 			pass
 	DisplayServer.clipboard_set(toBeCopied)
 	return toBeCopied
@@ -532,4 +538,40 @@ func _on_idiot_stopwatch_setting_change_on_top(to):
 
 func _on_idiot_stopwatch_setting_change_mute(to):
 	setMuteBeep(to)
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_copy_counter():
+	copyExtrasMenu(0)
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_copy_full_report():
+	#print('copy full')
+	copyExtrasMenu(7)
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_copy_last_timer_format():
+	copyExtrasMenu(5)
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_copy_last_timer_full():
+	copyExtrasMenu(6)
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_copy_last_timer_sec():
+	copyExtrasMenu(4)
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_copy_logs_bullet():
+	copyExtrasMenu(3)
+	pass # Replace with function body.
+
+
+func _on_idiot_stopwatch_setting_copy_logs_table():
+	copyExtrasMenu(2)
 	pass # Replace with function body.

@@ -23,6 +23,13 @@ signal changeBeepInSec(to:float)
 signal changeOnTop(to:bool)
 signal changeMute(to:bool)
 signal offerReset(the:String)
+signal copyFullReport()
+signal copyCounter()
+signal copyLogsBullet()
+signal copyLogsTable
+signal copyLastTimerSec()
+signal copyLastTimerFormat()
+signal copyLastTimerFull()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -154,5 +161,54 @@ func _on_always_on_top_toggled(toggled_on):
 func _on_mute_beep_toggled(toggled_on):
 	if activo:
 		emit_signal("changeMute",toggled_on)
+		pass
+	pass # Replace with function body.
+
+
+func _on_copy_full_report_pressed():
+	if activo:
+		emit_signal("copyFullReport")
+		pass
+	pass # Replace with function body.
+
+
+func _on_copy_counter_pressed():
+	if activo:
+		emit_signal("copyCounter")
+		pass
+	pass # Replace with function body.
+
+
+func _on_copy_logs_bullet_pressed():
+	if activo:
+		emit_signal("copyLogsBullet")
+		pass
+	pass # Replace with function body.
+
+
+func _on_copy_logs_table_pressed():
+	if activo:
+		emit_signal("copyLogsTable")
+		pass
+	pass # Replace with function body.
+
+
+func _on_copy_last_timer_full_pressed():
+	if activo:
+		emit_signal("copyLastTimerFull")
+		pass
+	pass # Replace with function body.
+
+
+func _on_copy_last_timer_sec_pressed():
+	if activo:
+		emit_signal("copyLastTimerSec")
+		pass
+	pass # Replace with function body.
+
+
+func _on_copy_last_timer_format_pressed():
+	if activo:
+		emit_signal("copyLastTimerFormat")
 		pass
 	pass # Replace with function body.

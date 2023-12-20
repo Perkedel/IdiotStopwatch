@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://qpb82r0y1a0m"]
+[gd_scene load_steps=12 format=3 uid="uid://qpb82r0y1a0m"]
 
 [ext_resource type="Script" path="res://GameDVDCardtridge/IdiotStopwatch/menu/idiot_stopwatch_setting.gd" id="1_qgsuf"]
 [ext_resource type="Texture2D" uid="uid://dtiik82sm6t3e" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/nvmButtonLeft.png" id="2_3bgad"]
+[ext_resource type="Texture2D" uid="uid://bhj234xeuyxlk" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/CopyButton.png" id="3_df4cx"]
 [ext_resource type="Texture2D" uid="uid://c3ab67kf7ffw4" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyReset.png" id="3_wtok4"]
 [ext_resource type="Texture2D" uid="uid://bf2rbir5e2y38" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/Shred.png" id="4_bhgyu"]
 [ext_resource type="Texture2D" uid="uid://37amh6gnarj6" path="res://GameDVDCardtridge/IdiotStopwatch/sprites/TallyCounter.png" id="5_t5k7h"]
@@ -59,12 +60,84 @@ theme_override_font_sizes/font_size = 72
 text = "Settings
 "
 
+[node name="LabelReporting" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 72
+text = "Reporting"
+
+[node name="ReportBar" type="HFlowContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CopyFullReport" type="Button" parent="ScrollContainer/VBoxContainer/ReportBar"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+tooltip_text = "Purge timer logs"
+theme_override_font_sizes/font_size = 48
+text = "Copy Full Report"
+icon = ExtResource("3_df4cx")
+expand_icon = true
+
+[node name="CopyCounter" type="Button" parent="ScrollContainer/VBoxContainer/ReportBar"]
+custom_minimum_size = Vector2(425, 0)
+layout_mode = 2
+tooltip_text = "Purge timer logs"
+theme_override_font_sizes/font_size = 48
+text = "Copy Counter"
+icon = ExtResource("5_t5k7h")
+expand_icon = true
+
+[node name="CopyLogsBullet" type="Button" parent="ScrollContainer/VBoxContainer/ReportBar"]
+custom_minimum_size = Vector2(425, 0)
+layout_mode = 2
+tooltip_text = "Purge timer logs"
+theme_override_font_sizes/font_size = 48
+text = "Copy Logs (list)"
+icon = ExtResource("3_df4cx")
+expand_icon = true
+
+[node name="CopyLogsTable" type="Button" parent="ScrollContainer/VBoxContainer/ReportBar"]
+custom_minimum_size = Vector2(475, 0)
+layout_mode = 2
+tooltip_text = "Purge timer logs"
+theme_override_font_sizes/font_size = 48
+text = "Copy Logs (Table)"
+icon = ExtResource("3_df4cx")
+expand_icon = true
+
+[node name="CopyLastTimerFull" type="Button" parent="ScrollContainer/VBoxContainer/ReportBar"]
+custom_minimum_size = Vector2(475, 0)
+layout_mode = 2
+tooltip_text = "Purge timer logs"
+theme_override_font_sizes/font_size = 48
+text = "Copy Full Timer"
+icon = ExtResource("6_563fx")
+expand_icon = true
+
+[node name="CopyLastTimerSec" type="Button" parent="ScrollContainer/VBoxContainer/ReportBar"]
+custom_minimum_size = Vector2(475, 0)
+layout_mode = 2
+tooltip_text = "Purge timer logs"
+theme_override_font_sizes/font_size = 48
+text = "Copy Last Second"
+icon = ExtResource("6_563fx")
+expand_icon = true
+
+[node name="CopyLastTimerFormat" type="Button" parent="ScrollContainer/VBoxContainer/ReportBar"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+tooltip_text = "Purge timer logs"
+theme_override_font_sizes/font_size = 48
+text = "Copy Format Timer"
+icon = ExtResource("6_563fx")
+expand_icon = true
+
 [node name="LabelClears" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
 text = "Deletes"
 
-[node name="ResetBar" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="ResetBar" type="HFlowContainer" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
@@ -172,6 +245,13 @@ context_menu_enabled = true
 selection_enabled = true
 
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/Titler/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ReportBar/CopyFullReport" to="." method="_on_copy_full_report_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ReportBar/CopyCounter" to="." method="_on_copy_counter_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ReportBar/CopyLogsBullet" to="." method="_on_copy_logs_bullet_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ReportBar/CopyLogsTable" to="." method="_on_copy_logs_table_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ReportBar/CopyLastTimerFull" to="." method="_on_copy_last_timer_full_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ReportBar/CopyLastTimerSec" to="." method="_on_copy_last_timer_sec_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/ReportBar/CopyLastTimerFormat" to="." method="_on_copy_last_timer_format_pressed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/ResetBar/ClearCounter" to="." method="_on_clear_counter_pressed"]
 [connection signal="pressed" from="ScrollContainer/VBoxContainer/ResetBar/ClearLog" to="." method="_on_clear_log_pressed"]
 [connection signal="value_changed" from="ScrollContainer/VBoxContainer/SetBar/CounterSpinBox" to="." method="_on_spin_box_value_changed"]
